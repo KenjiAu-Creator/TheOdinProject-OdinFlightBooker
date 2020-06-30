@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+<h1><%= @airport.code %></h1>
+
+<table>
+  <tr>
+    <td>Start</td>
+    <td>End</td>
+    <td>Length</td>
+  </tr>
+    <% @airport.flights.each do |flight| %>
+    <tr>
+      <td><%= Airport.find(flight.startId).code %></td>
+      <td><%= Airport.find(flight.destinationId).code %></td>
+      <td><%= flight.flightDuration %>
+    </tr>
+    <% end %>
+</table>
+
+<%= link_to 'Edit', edit_airport_path(@airport) %> |
+<%= link_to 'Back', airports_path %>
