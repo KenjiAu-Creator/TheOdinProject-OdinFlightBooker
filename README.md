@@ -30,3 +30,8 @@ If you are having issues, please let us know.
 License
 -----------
 
+Learning
+-----------
+You can have many belongs_to connections set up for a single model.
+The foreign key can be found in either the incoming table or the outgoing one.
+

@@ -5,6 +5,7 @@ class AirportsController < ApplicationController
   # GET /airports.json
   def index
     @airports = Airport.all
+    @airportOptions = Airport.all.map { |a| [a.code, a.id] }
   end
 
   # GET /airports/1
