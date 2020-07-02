@@ -1,0 +1,23 @@
+<h2>Odin Flight Booker!</h2>
+<div class="flightPlanner">
+  <div class="flightAirports">
+    <h3>From:</h3>
+    <%# <%= select_tag(:airport_id, options_for_select(@airportOptions)) %>
+  </div>
+  <div class="flightAirports">
+    <h3>To:</h3>
+    <%# <%= select_tag(:airport_id, options_for_select(@airportOptions)) %>
+  </div>
+</div>
+
+<%= form_tag flights_path, method: "get" do %>
+  <%= select_tag(:departId, options_for_select(@airportOptions))%>
+  <%= select_tag(:arrivalId, options_for_select(@airportOptions))%>
+  <%= submit_tag("Look for flights", :name => nil) %>
+<% end %>
+
+<h3>Possible Flights</h3>
+<% @possibleFlights.each do |f| %>
+  <%= f.fromAirport.code %>
+  <%= f.toAirport.code %>
+<% end %>

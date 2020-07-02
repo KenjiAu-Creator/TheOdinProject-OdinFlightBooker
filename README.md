@@ -14,6 +14,7 @@ Install $project by running:
 
   rails db:migrate
   rake db:seed
+  rake db:reset (If you need to reset the DB)
   rails s
 
 Contribute

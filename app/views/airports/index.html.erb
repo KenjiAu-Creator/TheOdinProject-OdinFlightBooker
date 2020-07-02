@@ -23,7 +23,13 @@
   <%= link_to 'New Airport', new_airport_path %>
 </div>
 
-<div class="Flight planner">
-  <p>ah</p>
-  <%= select_tag(:airport_id, options_for_select(@airportOptions)) %>
+<div class="flightPlanner">
+  <div class="flightAirports">
+    <h3>From:</h3>
+    <%= select_tag(:airport_id, options_for_select(@airportOptions)) %>
+  </div>
+  <div class="flightAirports">
+    <h3>To:</h3>
+    <%= select_tag(:airport_id, options_for_select(@airportOptions)) %>
+  </div>
 </div>
