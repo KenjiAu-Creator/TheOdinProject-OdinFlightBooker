@@ -1,0 +1,7 @@
+Add in depart time to FLight model
+Add in arrival time to Flight model
+Add in date to Flight model
+
+Add in date for search options
+Possible flight results should have depart time, arrival time, duration (maybe random pricing?)
+Change numOfPassengers into adult / children options?

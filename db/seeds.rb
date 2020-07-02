@@ -24,6 +24,12 @@
     for i in 0..10 do
       random1 = rand(1..10)
       random2 = rand(1..10)
-      Flight.create(startId: random1, destinationId: random2, flightDuration: "09:00", fromAirport: Airport.find(random1), toAirport: Airport.find(random2))
+      Flight.create(startId: random1, 
+                    destinationId: random2, 
+                    flightDuration: "09:00", 
+                    fromAirport: Airport.find(random1), 
+                    toAirport: Airport.find(random2),
+                    arrivalTime: "12:00",
+                    departTime: "21:00",)
     end
 
