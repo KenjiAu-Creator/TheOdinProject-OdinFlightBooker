@@ -21,15 +21,43 @@
 
   # Flights
     Flight.delete_all
-    for i in 0..10 do
+  # Ideally create a rand(0..23) for arrival and depart.
+  # Input into string with the variable at the start
+  # Subtract Arrival from depart (Use abs) to get flight duration
+  # Input into another string
+  
+    for i in 0..100 do
       random1 = rand(1..10)
       random2 = rand(1..10)
+      random3 = rand(1..24)
+      random4 = rand(1..24)
+
+      if random3 < 10
+        arrival = "0#{random3}:00"
+      else
+        arrival = "#{random3}:00"
+      end
+
+      if random4 < 10
+        depart = "0#{random4}:00"
+      else
+        depart = "#{random4}:00"
+      end
+
+      duration = (random3 - random4).abs
+
+      if duration < 10
+        durationTime = "0#{duration}:00"
+      else
+        durationTime = "#{duration}:00"
+      end
+      
       Flight.create(startId: random1, 
                     destinationId: random2, 
-                    flightDuration: "09:00", 
+                    flightDuration: durationTime, 
                     fromAirport: Airport.find(random1), 
                     toAirport: Airport.find(random2),
-                    arrivalTime: "12:00",
-                    departTime: "21:00",)
+                    arrivalTime: arrival,
+                    departTime: depart,)
     end
 

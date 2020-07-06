@@ -13,7 +13,7 @@ class FlightsController < ApplicationController
           "8" => 8,
           "9" => 9,
       }
-      @possibleFlights = Flight.search(params[:arrivalId],params[:departId])
+      @possibleFlights = Flight.search(params[:arrivalId],params[:departId]).all.to_a
     end
    
     private

@@ -18,11 +18,19 @@
   <% end %>
 </div>
 
-<h3>Possible Flights</h3>
-  <div class="search-results">
-  
-    <% @possibleFlights.each do |f| %>
-      <%= f.fromAirport.code %>
-      <%= f.toAirport.code %>
-    <% end %>
-  </div>
+<% if @possibleFlights %>
+  <h3>Possible Flights</h3>
+    <div class="search-results">
+      <table>
+        <% @possibleFlights.each do |f| %>
+          <tr>
+            <td><%= f.fromAirport.code %></td>
+            <td><%= f.toAirport.code %></td>
+            <td><%= f.departTime %></td>
+            <td><%= f.arrivalTime %></td>
+            <td><%= f.flightDuration %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+<% end %>
