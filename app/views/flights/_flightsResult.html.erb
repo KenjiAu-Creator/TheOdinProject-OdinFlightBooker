@@ -1,0 +1,17 @@
+<% form_with(model: flightResults, local:true) do |form| %>
+  <% if flightResults.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(flightResults.errors.count, "error") %> prohibited this airport from being saved:</h2>
+
+      <ul>
+      <% flightResults.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

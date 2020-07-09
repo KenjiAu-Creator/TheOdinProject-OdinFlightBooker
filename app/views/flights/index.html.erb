@@ -22,14 +22,19 @@
   <h3>Possible Flights</h3>
     <div class="search-results">
       <table>
-        <% @possibleFlights.each do |f| %>
-          <tr>
-            <td><%= f.fromAirport.code %></td>
-            <td><%= f.toAirport.code %></td>
-            <td><%= f.departTime %></td>
-            <td><%= f.arrivalTime %></td>
-            <td><%= f.flightDuration %></td>
-          </tr>
+        <%= form_for(@booking, :url => url_for(:controller => "bookings", :action => "new"), method: :get) do |form| %>
+          <% @possibleFlights.each do |f| %>
+            <tr>
+              <td><%= radio_button("flightData", "flightHash", f) %></td>
+              <td><%= f.fromAirport.code %></td>
+              <td><%= f.toAirport.code %></td>
+              <td><%= f.departTime %></td>
+              <td><%= f.arrivalTime %></td>
+              <td><%= f.flightDuration %></td>
+            </tr>
+          <% end %>
+
+          <td><%= form.submit "Submit" %></td>
         <% end %>
       </table>
     </div>
