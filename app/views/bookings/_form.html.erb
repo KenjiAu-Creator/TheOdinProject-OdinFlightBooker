@@ -3,8 +3,10 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
-    <%= f.input :passenger, label: "Passenger name" %>
-    <%= f.input :email, placeholder: "user@domain.com"%>
+    <%= simple_form_for(@passenger) do |pForm| %>
+      <%= pForm.input :passenger, label: "Passenger name" %>
+      <%= pForm.input :email, placeholder: "user@domain.com"%>
+    <% end %>
   </div>
 
   <div class="form-actions">
