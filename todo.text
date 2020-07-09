@@ -4,3 +4,4 @@ Add in date for search options
 
 Change numOfPassengers into adult / children options?
 
+Possbily change SQlite to PGSQL due to record limit of 11 -> PG will allow more flights to be shown.

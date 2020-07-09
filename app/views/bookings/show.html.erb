@@ -1,7 +1,29 @@
 <p id="notice"><%= notice %></p>
 <h1>Booking ID: <%= @booking.id %></h1>
+
+<h2>Flight Information</h2>
+<table>
+  <tr>
+    <td>Departing Airport</td>
+    <td>Arrival Airport</td>
+    <td>Departure Time</td>
+    <td>Arrival Time</td>
+    <td>Flight Duration</td>
+  </tr>
+  <tr>
+    <td><%= Airport.find(Flight.find(@booking.flight_id).startId).code %></td>
+    <td><%= Airport.find(Flight.find(@booking.flight_id).destinationId).code %></td>
+    <td><%= Flight.find(@booking.flight_id).departTime %></td>
+    <td><%= Flight.find(@booking.flight_id).arrivalTime %></td>
+    <td><%= Flight.find(@booking.flight_id).flightDuration %></td>
+</table>
+
 <h3>Passengers registered for this booking:</h3>
 <table>
+  <tr>
+    <td>Name:</td>
+    <td>Email:</td>
+  </tr>
   <% @booking.passengers.each do |p| %>
     <tr>
       <td><%= p.name %></td>
