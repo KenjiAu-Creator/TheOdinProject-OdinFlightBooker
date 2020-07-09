@@ -14,8 +14,8 @@ class BookingsController < ApplicationController
 
   # GET /bookings/new
   def new
-    @booking = Booking.new
-    @flight = params[:flightData]["flightHash"]
+    @booking = current_flight.bookings.build
+    @passenger = @booking.passengers.build
   end
 
   # GET /bookings/1/edit
@@ -25,10 +25,15 @@ class BookingsController < ApplicationController
   # POST /bookings
   # POST /bookings.json
   def create
-    @booking = Booking.new(booking_params)
+    # We are creating a booking based on the flight chosen.
+    @booking = current_flight.bookings.build
+    @passenger = @booking.passengers.build(booking_params["passenger"])
+
+    # @booking = Booking.new(booking_params)
 
     respond_to do |format|
       if @booking.save
+        
         format.html { redirect_to @booking, notice: 'Booking was successfully created.' }
         format.json { render :show, status: :created, location: @booking }
       else
@@ -70,7 +75,18 @@ class BookingsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def booking_params
-      params.fetch(:booking, {})
+      # params.fetch(:booking, {})
       # params.require(:flight).permit(:get)
+      params.require(:booking).permit(:flightId, passenger: [:name, :email])
+    end
+
+    def current_flight
+      if !params[:flightData].nil?
+        flightId = params[:flightData]["flightId"]
+        flight = Flight.find(flightId)
+      else
+        flightId = params["booking"]["flightId"]
+        flight = Flight.find(flightId)
+      end
     end
 end

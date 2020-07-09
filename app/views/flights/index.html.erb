@@ -25,7 +25,7 @@
         <%= form_for(@booking, :url => url_for(:controller => "bookings", :action => "new"), method: :get) do |form| %>
           <% @possibleFlights.each do |f| %>
             <tr>
-              <td><%= radio_button("flightData", "flightHash", f) %></td>
+              <td><%= radio_button("flightData", "flightId", f.id) %></td>
               <td><%= f.fromAirport.code %></td>
               <td><%= f.toAirport.code %></td>
               <td><%= f.departTime %></td>

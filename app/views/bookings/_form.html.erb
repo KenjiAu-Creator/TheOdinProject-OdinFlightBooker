@@ -3,13 +3,18 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
-    <%= simple_form_for(@passenger) do |pForm| %>
-      <%= pForm.input :passenger, label: "Passenger name" %>
-      <%= pForm.input :email, placeholder: "user@domain.com"%>
+    <%= f.fields_for :passenger do |passForm| %>
+      <%= passForm.input :name, label: "Passenger name" %>
+      <%= passForm.input :email, placeholder: "user@domain.com"%><br>
     <% end %>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
+  <div class="hid-inputs">
+    <%= f.hidden_field(:flightId, :value => params["flightData"]["flightId"]) %>
   </div>
+
+  <div class="form-actions">
+    <%= f.submit "Add booking" %>
+  </div>
+
 <% end %>

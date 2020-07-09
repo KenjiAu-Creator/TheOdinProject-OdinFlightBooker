@@ -1,4 +1,15 @@
 <p id="notice"><%= notice %></p>
+<h1>Booking ID: <%= @booking.id %></h1>
+<h3>Passengers registered for this booking:</h3>
+<table>
+  <% @booking.passengers.each do |p| %>
+    <tr>
+      <td><%= p.name %></td>
+      <td><%= p.email %></td><br>
+    </tr>
+  <% end %>
+</table>
+
 
 <%= link_to 'Edit', edit_booking_path(@booking) %> |
 <%= link_to 'Back', bookings_path %>
