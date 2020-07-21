@@ -15,7 +15,7 @@ class BookingsController < ApplicationController
   # GET /bookings/new
   def new
     @booking = current_flight.bookings.build
-    @passenger = @booking.passengers.build
+    @numOfPass = params["numOfPass"]
   end
 
   # GET /bookings/1/edit
@@ -26,14 +26,18 @@ class BookingsController < ApplicationController
   # POST /bookings.json
   def create
     # We are creating a booking based on the flight chosen.
-    @booking = current_flight.bookings.build
-    @passenger = @booking.passengers.build(booking_params["passenger"])
+    @booking = current_flight.bookings.create
+    # Save each passenger that was created
+    booking_params["passengerList"].each_pair do |passenger, info|
+      @passenger = @booking.passengers.create(info)
+    end
+
+    # @passenger = @booking.passengers.build(booking_params["passenger"])
 
     # @booking = Booking.new(booking_params)
 
     respond_to do |format|
       if @booking.save
-        
         format.html { redirect_to @booking, notice: 'Booking was successfully created.' }
         format.json { render :show, status: :created, location: @booking }
       else
@@ -77,7 +81,15 @@ class BookingsController < ApplicationController
     def booking_params
       # params.fetch(:booking, {})
       # params.require(:flight).permit(:get)
-      params.require(:booking).permit(:flightId, passenger: [:name, :email])
+      params.require(:booking).permit(:flightId,
+                                      passenger_attributes: [:name, :email],
+                                      passengerList: [
+                                        passenger1: [:name, :email],
+                                        passenger2: [:name, :email],
+                                        passenger3: [:name, :email],
+                                        passenger4: [:name, :email]
+                                      ]
+                                    )
     end
 
     def current_flight

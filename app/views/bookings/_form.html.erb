@@ -3,9 +3,13 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
-    <%= f.fields_for :passenger do |passForm| %>
-      <%= passForm.input :name, label: "Passenger name" %>
-      <%= passForm.input :email, placeholder: "user@domain.com"%><br>
+    <% for i in 1..@numOfPass.to_i do %>
+      <%= f.fields_for :passengerList do |list| %>
+        <%= list.fields_for "passenger#{i}" do |passForm| %>
+          <%= passForm.input :name, label: "Passenger name" %>
+          <%= passForm.input :email, placeholder: "user@domain.com"%><br>
+        <% end %>
+      <% end %>
     <% end %>
   </div>
 

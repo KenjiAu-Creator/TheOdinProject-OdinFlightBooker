@@ -18,7 +18,7 @@
     <td><%= Flight.find(@booking.flight_id).flightDuration %></td>
 </table>
 
-<h3>Passengers registered for this booking:</h3>
+<h2>Passengers registered for this booking:</h2>
 <table>
   <tr>
     <td>Name:</td>
@@ -27,11 +27,10 @@
   <% @booking.passengers.each do |p| %>
     <tr>
       <td><%= p.name %></td>
-      <td><%= p.email %></td><br>
+      <td><%= p.email %></td>
     </tr>
   <% end %>
 </table>
-
 
 <%= link_to 'Edit', edit_booking_path(@booking) %> |
 <%= link_to 'Back', bookings_path %>

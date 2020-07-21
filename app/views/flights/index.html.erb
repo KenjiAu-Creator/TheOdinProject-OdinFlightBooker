@@ -31,6 +31,7 @@
               <td><%= f.departTime %></td>
               <td><%= f.arrivalTime %></td>
               <td><%= f.flightDuration %></td>
+              <td><%= hidden_field_tag "numOfPass", params["numOfPassengers"] %>
             </tr>
           <% end %>
 
