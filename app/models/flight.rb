@@ -5,9 +5,9 @@ class Flight < ApplicationRecord
 
     has_many :bookings
 
-    def self.search(departId, arrivalId)
-        if (departId && arrivalId)
-          possibleFlight = Flight.where(:startId => departId, :destinationId => arrivalId)
+    def self.search(departId, destinationId, flightDate)
+        if ((departId && destinationId) && flightDate)
+          possibleFlight = Flight.where(:startId => departId, :destinationId => destinationId, :date => flightDate)
           return possibleFlight
         end
       end

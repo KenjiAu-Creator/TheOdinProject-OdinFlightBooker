@@ -1,33 +1,44 @@
-<h2>Odin Flight Booker!</h2>
+<h2>Welcome to Odin Flight Booker!</h2>
 <div class="flightPlanner">
-  <div class="searchOptions">
-    <h3>From:</h3>
-  </div>
-  <div class="searchOptions">
-    <h3>To:</h3>
-  </div>
-  <div class="searchOptions">
-    <h3>Number of Passengers</h3>
-  </div>
-
-  <%= form_tag flights_path, method: "get" do %>
-    <%= select_tag(:departId, options_for_select(@airportOptions)) %>
-    <%= select_tag(:arrivalId, options_for_select(@airportOptions)) %>
-    <%= select_tag(:numOfPassengers, options_for_select(@numOfPassengers)) %>
-    <%= submit_tag("Look for flights", :name => nil) %>
-  <% end %>
+  <table>
+    <tr>
+      <td><h3>From:</h3></td>
+      <td><h3>To:</h3></td>
+      <td><h3>Number of Passengers</h3></td>
+      <td><h3>Departure Date</h3></td>
+    </tr>
+    <tr>
+      <%= form_tag flights_path, method: "get" do %>
+      <td><%= select_tag(:departId, options_for_select(@airportOptions)) %></td>
+      <td><%= select_tag(:destinationId, options_for_select(@airportOptions)) %></td>
+      <td><%= select_tag(:numOfPassengers, options_for_select(@numOfPassengers)) %></td>
+      <td><%= date_select(:flightDate, "GET") %></td>
+      <td><%= submit_tag("Look for flights", :name => nil) %></td>
+      <% end %>
+    </tr>
+  </table>
 </div>
 
-<% if @possibleFlights %>
+<% if !@possibleFlights.nil? %>
   <h3>Possible Flights</h3>
     <div class="search-results">
       <table>
+        <tr>
+          <td></td>
+          <td>From</td>
+          <td>To</td>
+          <td>Departure Date</td>
+          <td>Departure Time</td>
+          <td>Landing Time</td>
+          <td>Flight Duration</td>
+        </tr>
         <%= form_for(@booking, :url => url_for(:controller => "bookings", :action => "new"), method: :get) do |form| %>
           <% @possibleFlights.each do |f| %>
             <tr>
               <td><%= radio_button("flightData", "flightId", f.id) %></td>
               <td><%= f.fromAirport.code %></td>
               <td><%= f.toAirport.code %></td>
+              <td><%= f.date %></td>
               <td><%= f.departTime %></td>
               <td><%= f.arrivalTime %></td>
               <td><%= f.flightDuration %></td>

@@ -8,14 +8,23 @@ class FlightsController < ApplicationController
           "3" => 3,
           "4" => 4,
       }
-      @possibleFlights = Flight.search(params[:arrivalId],params[:departId])
-      
+
+      # The flight will only search if the flight date and airports are selected
+      if !params[:flightDate].nil?
+        @flightYear = params[:flightDate]["GET(1i)"].to_i
+        @flightMonth = params[:flightDate]["GET(2i)"].to_i
+        @flightDay = params[:flightDate]["GET(3i)"].to_i
+        @possibleFlightDate = Date.new(@flightYear, @flightMonth, @flightDay).strftime("%B %d, %Y")
+      end
+
+      @possibleFlights = Flight.search(params[:departId], params[:destinationId], @possibleFlightDate)
       @booking = Booking.new
+      
     end
    
     private
 
     def possibleFlights_params
-      params.require(:possibleFlights).permit(:arrivalId, :departId)
+      params.require(:possibleFlights).permit(:arrivalId, :departId, @possibleFlightDate)
     end
 end
