@@ -77,6 +77,7 @@
       end
 
       flightDate = Time.new(currentYear, randMonth, randDay)
+      date = flightDate.strftime("%B, %Y, %d")
       
       Flight.create(startId: random1, 
                     destinationId: random2, 
@@ -85,6 +86,6 @@
                     toAirport: Airport.find(random2),
                     arrivalTime: arrival,
                     departTime: depart,
-                    date: flightDate)
+                    date: date)
     end
 

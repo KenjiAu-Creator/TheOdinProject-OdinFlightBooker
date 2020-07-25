@@ -8,6 +8,7 @@
     <td>Arrival Airport</td>
     <td>Departure Time</td>
     <td>Arrival Time</td>
+    <td>Departure Date</td>
     <td>Flight Duration</td>
   </tr>
   <tr>
@@ -15,6 +16,7 @@
     <td><%= Airport.find(Flight.find(@booking.flight_id).destinationId).code %></td>
     <td><%= Flight.find(@booking.flight_id).departTime %></td>
     <td><%= Flight.find(@booking.flight_id).arrivalTime %></td>
+    <td><%= Flight.find(@booking.flight_id).date %></td>
     <td><%= Flight.find(@booking.flight_id).flightDuration %></td>
 </table>
 
