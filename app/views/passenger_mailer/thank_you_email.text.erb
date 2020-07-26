@@ -1,4 +1,21 @@
 Thank you for booking with OdinFlights
 =======================================
+You have successfully booked your flight!
+Here is your itinerary:
+<%= @departAirport.name %>
+<%= @destinationAirport.name %>
+Take-off
+<%= @flight.date %>
+<%= @flight.departTime %>
 
-Your flight is:
+Landing
+<%= @flight.date %>
+<%= @flight.arrivalTime%>
+
+Flight duration
+<%= @flight.flightDuration %>
+
+Passengers
+<% @passengers.each do |passenger| %>
+  <%= passenger.name %>
+<% end %>
