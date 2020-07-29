@@ -18,7 +18,13 @@ class FlightsController < ApplicationController
       end
 
       @possibleFlights = Flight.search(params[:departId], params[:destinationId], @possibleFlightDate)
+      if @possibleFlights.nil?
+        @possibleFlights = []
+      end
       @booking = Booking.new
+
+      @earliestFlights = Flight.all.sort_by { |flight| flight.date }
+      @eFlights = @earliestFlights[0..10]
       
     end
    

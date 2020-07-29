@@ -13,14 +13,35 @@
       <td><%= select_tag(:destinationId, options_for_select(@airportOptions)) %></td>
       <td><%= select_tag(:numOfPassengers, options_for_select(@numOfPassengers)) %></td>
       <td><%= date_select(:flightDate, "GET") %></td>
-      <td><%= submit_tag("Look for flights", :name => nil) %></td>
+      <td><%= submit_tag("Look for flights!", :name => nil) %></td>
       <% end %>
     </tr>
   </table>
 </div>
 
-<% if @possibleFlights.length >= 1 %>
-  <h3>Possible Flights</h3>
+<div id="right_side_nav">
+  <h3>Next Ten Flights:</h3>
+  <table>
+    <tr>
+      <td></td>
+      <td>Departure Date</td>
+      <td>Departure Time</td>
+      <td>Arrival Time</td>
+    </tr>
+    <% @eFlights.each do |flight| %>
+      <tr>
+        <td><%= Airport.find(flight.startId).name %> to <%= Airport.find(flight.destinationId).name %></td>
+        <td><%= flight.date %></td>
+        <td><%= flight.departTime %></td>
+        <td><%= flight.arrivalTime %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+
+<div class="flightResults">
+  <% if @possibleFlights.length >= 1 %>
+    <h3>Possible Flights</h3>
     <div class="search-results">
       <table>
         <tr>
@@ -49,4 +70,6 @@
         <% end %>
       </table>
     </div>
-<% end %>
+  <% end %>
+</div>
+
