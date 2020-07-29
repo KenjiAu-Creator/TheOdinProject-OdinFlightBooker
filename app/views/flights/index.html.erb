@@ -19,26 +19,6 @@
   </table>
 </div>
 
-<div id="right_side_nav">
-  <h3>Next Ten Flights:</h3>
-  <table>
-    <tr>
-      <td></td>
-      <td>Departure Date</td>
-      <td>Departure Time</td>
-      <td>Arrival Time</td>
-    </tr>
-    <% @eFlights.each do |flight| %>
-      <tr>
-        <td><%= Airport.find(flight.startId).name %> to <%= Airport.find(flight.destinationId).name %></td>
-        <td><%= flight.date %></td>
-        <td><%= flight.departTime %></td>
-        <td><%= flight.arrivalTime %></td>
-      </tr>
-    <% end %>
-  </table>
-</div>
-
 <div class="flightResults">
   <% if @possibleFlights.length >= 1 %>
     <h3>Possible Flights</h3>
@@ -71,5 +51,25 @@
       </table>
     </div>
   <% end %>
+</div>
+
+<div id="next10Flights">
+  <h3>Next Ten Flights:</h3>
+  <table>
+    <tr>
+      <td></td>
+      <td>Departure Date</td>
+      <td>Departure Time</td>
+      <td>Arrival Time</td>
+    </tr>
+    <% @eFlights.each do |flight| %>
+      <tr>
+        <td><%= Airport.find(flight.startId).name %> to <%= Airport.find(flight.destinationId).name %></td>
+        <td><%= flight.date %></td>
+        <td><%= flight.departTime %></td>
+        <td><%= flight.arrivalTime %></td>
+      </tr>
+    <% end %>
+  </table>
 </div>
 

@@ -9,19 +9,25 @@
     <p>
       You have successfully booked your flight! Heres your itienerary: 
     </p>
+    <table>
+      <tr>
+        <td><%= @departAirport.name %> to <%= @destinationAirport.name %></td>
+      </tr>
+      <tr>
+        <td>Take-off</td>
+        <td>Landing</td>
+        <td>Flight Duration</td>
+      </tr>
+      <tr>
+        <td><%= @flight.date %>, <%= @flight.departTime %></td>
+        <td><%= @flight.date %>, <%= @flight.arrivalTime%></td>
+        <td><%= @flight.flightDuration %></td>
+      </tr>
+    </table>
 
-    <%= @departAirport.name %> to <%= @destinationAirport.name %>
-
-    <p>Take-off</p>
-    <%= @flight.date %>, <%= @flight.departTime %>
-    <p>Landing</p>
-    <%= @flight.date %>, <%= @flight.arrivalTime%>
-    <p>Flight duration</p>
-    <%= @flight.flightDuration %>
-
-    <p>Passenger name</p>
+    <p>Passengers</p>
     <% @passengers.each do |passenger| %>
-      <%= passenger.name %>
+      <%= passenger.name.capitalize %>
     <% end %>
 
   </body>
