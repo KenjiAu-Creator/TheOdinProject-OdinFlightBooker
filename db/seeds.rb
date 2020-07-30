@@ -16,7 +16,7 @@
     Airport.create(code: "DEN", name: "Denver")
     Airport.create(code: "SEA", name: "Seattle")
     Airport.create(code: "PHX", name: "Phoenix")
-    Airport.create(code: "MIA", name: "Misami")
+    Airport.create(code: "MIA", name: "Miami")
     Airport.create(code: "BOS", name: "Boston")
 
   # Flights
