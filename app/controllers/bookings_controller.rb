@@ -40,7 +40,7 @@ class BookingsController < ApplicationController
       if @booking.save
         PassengerMailer.with(passenger: @passenger).thank_you_email.deliver_now
         
-        format.html { redirect_to @booking, notice: 'Booking was successfully created.' }
+        format.html { redirect_to @booking, notice: 'Booking was successfully created. Confirmation E-mail has been sent.' }
         format.json { render :show, status: :created, location: @booking }
       else
         format.html { render :new }
